@@ -9,11 +9,15 @@ Gem::Specification.new do |s|
   s.version = "0.1.16"
 
   s.add_dependency("whoops_logger", "0.1.4")
-  s.add_dependency('rails', '~>3')
+  s.add_dependency('rails', '>3', "<5")
 
   s.add_development_dependency('rake', '0.8.7')
   s.add_development_dependency('rspec-rails')
-  s.add_development_dependency('ruby-debug')
+  if RUBY_VERSION < "1.9"
+    s.add_development_dependency('ruby-debug')
+  else
+    s.add_development_dependency('ruby-debug19')
+  end
   s.add_development_dependency('fakeweb')
   s.add_development_dependency('sqlite3')
   s.add_development_dependency("capybara", ">=0.4.0")
